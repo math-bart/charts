@@ -1,14 +1,14 @@
 import {Component, OnInit} from '@angular/core';
-import { WeatherService } from './weather.service';
+import { WeatherService } from '../weather.service';
 import { Chart } from 'chart.js';
 import 'chart.piecelabel.js';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-chart',
+  templateUrl: './chart.component.html',
+  styleUrls: ['./chart.component.css']
 })
-export class AppComponent implements OnInit {
+export class ChartComponent implements OnInit {
   chart = []; // This will hold our chart info
   chart2 = []; // This will hold our chart info
   dataToChart = [
@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
     { label: 'qwrq', value: 2 },
     { label: 'uyiuty', value: 28 },
     { label: 'bnmb', value: 43 }
-    ];
+  ];
   values;
   values2;
   labels;

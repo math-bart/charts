@@ -1,0 +1,89 @@
+<!--<button class="add-button cols-2 mat-mini-fab mat-accent" mat-mini-fab="" (click)="showModal()" color="primary">
+  <span class="mat-button-wrapper">
+    Add Chart
+  </span>
+  <div class="mat-button-ripple mat-ripple mat-button-ripple-round" matripple="">
+    <div class="mat-ripple-element" >
+    </div>
+  </div>
+  <div class="mat-button-focus-overlay">
+  </div>
+</button>-->
+<div class="metrics-toolbar" (click)="showModal()">
+  <span>choose charts <i class="fas fa-chart-pie"></i></span>
+</div>
+<div class="modal-chart-choose" [ngClass]="{modalVisible : isModalVisible === true }">
+  <div class="container mat-elevation-z1">
+    <div class="header">
+     Select which charts you want to see
+    </div>
+    <div class="content">
+      <div fxLayout="row" fxLayout.sm="column"  fxLayout.xs="column" *ngFor="let chart of chartList; let i = index" class="row">
+        <div class="single-chart" fxFlex="50">
+          <div fxLayout="column" fxFlex="20" fxLayoutAlign="center end">
+            <mat-checkbox color="primary"  [checked]="chart.isChecked" (change)="changeDisplay(i, $event)"></mat-checkbox>
+          </div>
+          <div fxLayout="column" fxFlex="30" fxLayoutAlign="center start" class="modal-chart-title">
+            {{ chart.name }}
+          </div>
+          <div fxLayout="column" fxFlex="50" class="details-chart" fxLayoutAlign="center start">
+            <img src="{{chart.imageSrc}}" width="150px" height="100px">
+          </div>
+        </div>
+        <div class="single-chart" fxFlex="50">
+          <div fxLayout="column" fxFlex="20" fxLayoutAlign="center end">
+            <mat-checkbox color="primary"  [checked]="chart.isChecked" (change)="changeDisplay(i, $event)"></mat-checkbox>
+          </div>
+          <div fxLayout="column" fxFlex="30" fxLayoutAlign="center start" class="modal-chart-title">
+            {{ chart.name }}
+          </div>
+          <div fxLayout="column" fxFlex="50" class="details-chart" fxLayoutAlign="center start">
+            <img src="{{chart.imageSrc}}" width="150px" height="100px">
+          </div>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayout.sm="column"  fxLayout.xs="column" *ngFor="let chart of chartList; let i = index" class="row">
+        <div class="single-chart" fxFlex="50">
+          <div fxLayout="column" fxFlex="1 1 20" fxLayoutAlign="center end">
+            <mat-checkbox color="primary"  [checked]="chart.isChecked" (change)="changeDisplay(i, $event)"></mat-checkbox>
+          </div>
+          <div fxLayout="column" fxFlex="1 1 30" fxLayoutAlign="center start" class="modal-chart-title">
+            {{ chart.name }}
+          </div>
+          <div fxLayout="column" fxFlex="1 1 50" class="details-chart" fxLayoutAlign="center start">
+            <img src="{{chart.imageSrc}}" width="150px" height="100px">
+          </div>
+        </div>
+        <div class="single-chart" fxFlex="50">
+          <div fxLayout="column" fxFlex="1 1 20" fxLayoutAlign="center end">
+            <mat-checkbox color="primary"  [checked]="chart.isChecked" (change)="changeDisplay(i, $event)"></mat-checkbox>
+          </div>
+          <div fxLayout="column" fxFlex="1 1 30" fxLayoutAlign="center start" class="modal-chart-title">
+            {{ chart.name }}
+          </div>
+          <div fxLayout="column" fxFlex="1 1 50" class="details-chart" fxLayoutAlign="center start">
+            <img src="{{chart.imageSrc}}" width="150px" height="100px">
+          </div>
+        </div>
+      </div>
+      <button mat-stroked-button color="primary" (click)="hideModal()">OK</button>
+    </div>
+  </div>
+</div>
+<gridster [options]="options">
+  <gridster-item [item]="item" *ngFor="let item of dashboard; let i = index">
+   {{i}}
+  </gridster-item>
+  <gridster-item [item]="chartList[0].numbers" *ngIf="visible('funnel')" >
+    <app-d3></app-d3>
+  </gridster-item>
+  <gridster-item [item]="chartList[2].numbers" *ngIf="visible('chart.js')">
+    <app-chart></app-chart>
+  </gridster-item>
+  <gridster-item [item]="chartList[1].numbers" *ngIf="visible('timeline')">
+    <app-timeline></app-timeline>
+  </gridster-item>
+  <gridster-item [item]="chartList[3].numbers" *ngIf="visible('ngx')">
+    <app-ngx></app-ngx>
+  </gridster-item>
+</gridster>
